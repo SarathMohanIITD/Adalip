@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="7c5a56eb-6e14-46e7-8711-02a534c8a50e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Bounded-rwl-gnn.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Demo_RWL_GNN.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meta/citeseer_meta_adj_0.05.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meta/citeseer_meta_adj_0.1.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meta/citeseer_meta_adj_0.15.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meta/citeseer_meta_adj_0.2.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meta/citeseer_meta_adj_0.25.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meta/cora_meta_adj_0.05.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meta/cora_meta_adj_0.1.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meta/cora_meta_adj_0.15.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meta/cora_meta_adj_0.2.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meta/cora_meta_adj_0.25.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meta/cora_ml_meta_adj_0.05.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meta/cora_ml_meta_adj_0.1.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meta/cora_ml_meta_adj_0.15.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meta/cora_ml_meta_adj_0.2.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meta/cora_ml_meta_adj_0.25.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meta/npy2npz.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meta/polblogs_meta_adj_0.05.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meta/polblogs_meta_adj_0.1.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meta/polblogs_meta_adj_0.15.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meta/polblogs_meta_adj_0.2.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meta/polblogs_meta_adj_0.25.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meta/pubmed_meta_adj_0.05.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meta/pubmed_meta_adj_0.1.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meta/pubmed_meta_adj_0.15.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meta/pubmed_meta_adj_0.2.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meta/pubmed_meta_adj_0.25.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nettack/changename.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nettack/citeseer_nettack_adj_1.0.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nettack/citeseer_nettack_adj_2.0.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nettack/citeseer_nettack_adj_3.0.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nettack/citeseer_nettack_adj_4.0.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nettack/citeseer_nettack_adj_5.0.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nettack/citeseer_nettack_adj_adj.npz.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nettack/citeseer_nettacked_nodes.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nettack/cora_nettack_adj_1.0.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nettack/cora_nettack_adj_2.0.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nettack/cora_nettack_adj_3.0.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nettack/cora_nettack_adj_4.0.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nettack/cora_nettack_adj_5.0.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nettack/cora_nettacked_nodes.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nettack/npy2npz.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nettack/polblogs_nettack_adj_1.0.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nettack/polblogs_nettack_adj_2.0.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nettack/polblogs_nettack_adj_3.0.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nettack/polblogs_nettack_adj_4.0.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nettack/polblogs_nettack_adj_5.0.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nettack/polblogs_nettacked_nodes.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nettack/pubmed_nettack_adj_1.0.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nettack/pubmed_nettack_adj_2.0.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nettack/pubmed_nettack_adj_3.0.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nettack/pubmed_nettack_adj_4.0.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nettack/pubmed_nettack_adj_5.0.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nettack/pubmed_nettacked_nodes.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/splits/citeseer_prognn_splits.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/splits/cora_ml_prognn_splits.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/splits/cora_prognn_splits.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/splits/pubmed_prognn_splits.json" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2Q2qvFuN6HjlnKjbLTPUWRAf6s8" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/sarat/Documents/My Files/Study Materials/IIT D/JTM/Project/Major project/RS-GNN"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7c5a56eb-6e14-46e7-8711-02a534c8a50e" name="Changes" comment="" />
+      <created>1684562253496</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1684562253496</updated>
+    </task>
+    <servers />
+  </component>
+</project>

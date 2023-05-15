@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Bounded-rwl-gnn.iml" filepath="$PROJECT_DIR$/.idea/Bounded-rwl-gnn.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/RS-GNN.iml" filepath="$PROJECT_DIR$/.idea/RS-GNN.iml" />
     </modules>
   </component>
 </project>
