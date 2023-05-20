@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c5a56eb-6e14-46e7-8711-02a534c8a50e" name="Changes" comment="Merge remote-tracking branch 'origin/main'">
-      <change beforePath="$PROJECT_DIR$/bounded_gcn.py" beforeDir="false" afterPath="$PROJECT_DIR$/bounded_gcn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoundedJointLearning.py" beforeDir="false" afterPath="$PROJECT_DIR$/BoundedJointLearning.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +61,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684563667210</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Merge remote-tracking branch 'origin/main'">
+      <created>1684563789536</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1684563789536</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
