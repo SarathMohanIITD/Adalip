@@ -5,27 +5,26 @@
 
 
 A PyTorch implementation of "Robust and stable learning via Logarithmic Norm Regularization" 
-<!-- 
-[![][colab]][RWL-GNN]
-<div align=center><img src="joint.png" width="700"/></div> -->
 
 ## Abstract 
-- Graph neural network (GNN) is achieving remarkable performances in a variety of
-application domains. However, GNN is vulnerable to noise and adversarial attacks
-in input data. Making GNN robust against noises and adversarial attacks is an
-important problem. The existing defense methods for GNNs are computationally
-demanding, are not scalable, and are architecture dependent. In this paper, we
-propose a generic framework for robustifying GNN known as Weighted Laplacian
-GNN (RWL-GNN). The method combines Weighted Graph Laplacian learning
-with the GNN implementation. The proposed method benefits from the positive
-semi-definiteness property of Laplacian matrix, feature smoothness, and latent
-features via formulating a unified optimization framework, which ensures the ad-
-versarial/noisy edges are discarded and connections in the graph are appropriately
-weighted. For demonstration, the experiments are conducted with Graph convo-
-lutional neural network(GCNN) architecture, however, the proposed framework
-is easily amenable to any existing GNN architecture. The simulation results with
-benchmark dataset establish the efficacy of the proposed method over the state-
-of-the-art methods, both in accuracy and computational efficiency. 
+- Graph Neural Networks (GNNs) have demonstrated remarkable performance across
+numerous application domains due to their ability to capture the potential of
+the interconnectedness of data. As GNN is getting adopted in the industry and
+government organizations, adversarial attacks on GNN have become a significant
+threat that can affect the overall performance of the learner. Additionally, as
+the depth of models increases, their performance often deteriorates significantly
+due to over-smoothing of the node features. The current defense techniques to
+handle both bottlenecks require significant computational resources, lack scalability,
+and rely on specific architectural configurations. In this work, we formulate a
+joint framework for graph denoising and GNN training along with logarithmic
+norm regularization on the product of layer-wise activations. The proposed use
+of logarithmic norm regularization aids in bounding the difference between the
+embeddings obtained from the original graph signal and the perturbed graph. The
+proposed frameworks are solved efficiently by leveraging block majorization-
+minimization, graph learning, and alternate minimization. The developed iterative
+algorithm is efficient and provably convergent. Simulation results on real datasets
+demonstrate the efficacy of the proposed method over state-of-the-art methods. The
+method also provides a new paradigm for the training of deep GNNs.
 
 ## Requirements
 See that in https://github.com/DSE-MSU/DeepRobust/blob/master/requirements.txt
@@ -45,9 +44,9 @@ python setup.py install
 ## Run the code
 After installation, you can clone this repository or you can use the demo notebook here [COLAB](https://colab.research.google.com/github/Bharat-Runwal/RWL-GNN/blob/main/Demo_RWL_GNN.ipynb)
 ```
-git clone https://github.com/Bharat-Runwal/RWL-GNN.git
-cd RWL-GNN
-python train.py --two_stage y --seed 10  --dataset cora --attack no --ptb_rate 0 --epochs 200  --epochs_pre 400 --alpha 1.0  --gamma 1.0 --beta 0.10 --lr_optim 1e-2 --lr 1e-3 
+https://github.com/SarathMohanIITD/RS-GNN
+cd RS-GNN
+!python train.py --two_stage y --bound 0.5 --seed 30 --dataset citeseer  --attack meta --ptb_rate 0.25 --epochs 200 --epochs_pre 400 --alpha 1.0  --gamma 1.0 --beta 0.3 --lr_optim 1e-2 --lr 1e-3
 ```
 <!-- [colab]: <https://colab.research.google.com/assets/colab-badge.svg>
 [RWL-GNN]: <https://colab.research.google.com/github/Bharat-Runwal/RWL-GNN/blob/main/Demo_RWL_GNN.ipynb> -->
@@ -56,14 +55,6 @@ python train.py --two_stage y --seed 10  --dataset cora --attack no --ptb_rate 0
 The code is based on :
 - DeepRobust [(https://github.com/DSE-MSU/DeepRobust)](https://github.com/DSE-MSU/DeepRobust)
 - [Pro-GNN](https://github.com/ChandlerBang/Pro-GNN)
+- [RWL-GNN](https://github.com/Bharat-Runwal/RWL-GNN)
 
-## Cite:
 
-```
-@article{runwal2022robust,
-  title={Robust Graph Neural Networks using Weighted Graph Laplacian},
-  author={Runwal, Bharat and Kumar, Sandeep and others},
-  journal={arXiv preprint arXiv:2208.01853},
-  year={2022}
-}
-```
