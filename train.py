@@ -68,7 +68,7 @@ print(args)
 # we need to set the random seed to be the same as that when you generate the perturbed graph
 # but now change the setting from nettack to prognn which directly loads the prognn splits
 # data = Dataset(root='/tmp/', name=args.dataset, setting='nettack', seed=15)
-data = Dataset(root='/tmp/', name=args.dataset,settings='prognn')
+data = Dataset(root='/tmp/', name=args.dataset,setting='prognn')
 adj, features, labels = data.adj, data.features, data.labels
 idx_train, idx_val, idx_test = data.idx_train, data.idx_val, data.idx_test
 
