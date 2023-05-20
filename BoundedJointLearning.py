@@ -8,7 +8,7 @@ import torch.optim as optim
 from deeprobust.graph.utils import accuracy
 import matplotlib.pyplot as plt
 import warnings
-
+from utils import *
 
 class RSGNN:
     """ RWL-GNN (Robust Graph Neural Networks using Weighted Graph Laplacian)
