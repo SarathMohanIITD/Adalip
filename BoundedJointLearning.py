@@ -8,7 +8,7 @@ import torch.optim as optim
 from deeprobust.graph.utils import accuracy
 import matplotlib.pyplot as plt
 import warnings
-
+from utils import *
 
 class RSGNN:
     """ RWL-GNN (Robust Graph Neural Networks using Weighted Graph Laplacian)
@@ -164,24 +164,18 @@ class RSGNN:
         only_inputs= True,
           )[0]
 
-        sq_norm_Aw = torch.norm(self.A(), p="fro")**2  ############################################################
-        #print(f'Aw(fro) = {sq_norm_Aw}')
+        sq_norm_Aw = torch.norm(self.A(), p="fro")**2
 
         new_term = self.bound**2  * (2 * self.Astar(self.A()) - self.w_old) / \
-                   (sq_norm_Aw - self.w_old.t() * self.weight)  ######################
+                   (sq_norm_Aw - self.w_old.t() * self.weight)
         sgl_grad = self.w_grad(args.alpha ,c,new_term)
 
-        #print(f'New Term = {new_term.sum()}')
 
         total_grad  = sgl_grad + gcn_grad 
 
-        self.w_old = self.weight    ##########
+        self.w_old = self.weight
         self.weight = self.sgl_opt.backward_pass(total_grad)
         self.weight = torch.clamp(self.weight,min=0)
-
-        #total_loss = loss_fro \
-        #            +  loss_gcn \
-        #            + loss_smooth_feat
 
         self.model.eval()
         normalized_adj = self.normalize()
@@ -194,7 +188,6 @@ class RSGNN:
             self.train_acc.append(acc_train.detach().cpu().numpy())
             self.valid_cost.append(loss_val.detach().cpu().numpy())
             self.valid_acc.append(acc_val.detach().cpu().numpy())
-            # self.train_cost.append(total_loss.detach().cpu().numpy())
         
         if args.test=="n":
             print('Epoch: {:04d}'.format(epoch+1),
@@ -245,8 +238,6 @@ class RSGNN:
 
         loss_train = F.nll_loss(output[idx_train], labels[idx_train]) + self.l2_reg
 
-        #if epoch % 20 == 0:
-        #    print(f'L2_reg = {self.l2_reg}, Loss_train = {loss_train}')
 
         acc_train = accuracy(output[idx_train], labels[idx_train])
         loss_train.backward(retain_graph = True)

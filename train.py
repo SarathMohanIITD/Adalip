@@ -94,7 +94,6 @@ if args.attack == 'meta' or args.attack == 'nettack':
 np.random.seed(args.seed)
 torch.manual_seed(args.seed)
 
-##########################
 if args.only_gcn:
     model = GCN(nfeat=features.shape[1],
                 nhid=args.hidden,
