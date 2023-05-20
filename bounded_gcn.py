@@ -185,7 +185,7 @@ class BoundedGCN(nn.Module):
         self.labels = labels
 
 
-         self._train_with_val(labels, idx_train, idx_val, train_iters, verbose)
+        self._train_with_val(labels, idx_train, idx_val, train_iters, verbose)
 
 
 
