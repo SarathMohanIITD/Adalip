@@ -49,7 +49,7 @@ cd RS-GNN
 !python train.py --two_stage y --bound 0.5 --seed 30 --dataset citeseer  --attack meta --ptb_rate 0.25 --epochs 200 --epochs_pre 400 --alpha 1.0  --gamma 1.0 --beta 0.3 --lr_optim 1e-2 --lr 1e-3
 ```
 <!-- [colab]: <https://colab.research.google.com/assets/colab-badge.svg>
-[RWL-GNN]: <https://colab.research.google.com/github/Bharat-Runwal/RWL-GNN/blob/main/Demo_RWL_GNN.ipynb> -->
+[RWL-GNN]: <https://github.com/SarathMohanIITD/RS-GNN/blob/main/RS_GNN.ipynb> -->
 
 ## Acknowledgements
 The code is based on :
