@@ -1,6 +1,6 @@
-<h1 align="center">RWL-GNN: Robustifying Graph Neural Networks via Weighted Laplacian </h1>
-<p align="center"> <a href="https://bharat-runwal.github.io/" target="_blank id="website">Bharat Runwal</a><sup>1</sup>, Vivek<sup>2</sup>, <a href="https://sites.google.com/view/sandeepkr/home" target="_blank id="website">Sandeep Kumar</a><sup>1</sup></p>
-<p align="center"><sup>1</sup> IIT Delhi,<sup>2</sup> Samsung Research Bangalore</p>
+<h1 align="center"> RS-GNN : Robust and stable learning via Logarithmic Norm Regularization</h1>
+
+<p align="center"><sup>1</sup> IIT Delhi
 
 <p align="center">
   <a href="https://arxiv.org/pdf/2208.01853.pdf" alt="ArXiv">
