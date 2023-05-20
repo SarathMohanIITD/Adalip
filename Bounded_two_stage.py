@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import warnings
 from utils import *
 
-class RwlGNN:
+class RSGNN:
     """ Rwl-GNN-Two-stage (Robust Weighted Gaph Laplacian)
     Parameters
     ----------
@@ -25,9 +25,9 @@ class RwlGNN:
     See details in https://github.com/Bharat-Runwal/RWL-GNN.
     """
 
-    def __init__(self,model, args, device):     #####################
+    def __init__(self,model, args, device):
         self.device = device
-        self.args = args                            ##########################
+        self.args = args
     def fit(self, features, adj):
         """Train RWL-GNN: Two-Stage.
         Parameters
@@ -71,19 +71,6 @@ class RwlGNN:
         self.w_old = self.w_old.to(self.device)
         c = self.Lstar(2*L_noise*args.alpha - args.beta*(torch.matmul(features,features.t())) )
 
-        #sq_norm_Aw = torch.norm(self.A(), p="fro") ** 2   ############################################################
-
-        #new_term = self.bound * (2 * self.Astar(self.A()) - self.w_old) / (sq_norm_Aw - self.w_old.t() * self.weight)  ######################
-        #print(f'New Term sum = {new_term.sum()}')
-
-        #k = self.Astar(self.A())-self.w_old
-        #kk = sq_norm_Aw - self.w_old.t()*self.weight
-
-
-        #print(f'c = {c.shape}')
-        #print(f'self.Astar(self.A())-self.w_old) = {k.sum()}')
-        #print(f'sq_norm_Aw - self.w_old.t()*self.weight) = {kk.sum()}')
-
         if optim_sgl == "Adam":
             self.sgl_opt =AdamOptimizer(self.weight,lr=lr_sgl)
         elif optim_sgl == "RMSProp":
@@ -96,25 +83,9 @@ class RwlGNN:
         t_total = time.time()
         
         for epoch in range(args.epochs_pre):
-
             sq_norm_Aw = torch.norm(self.A(), p="fro")**2
             new_term = self.bound * (2 * self.Astar(self.A()) - self.w_old) / (sq_norm_Aw - self.w_old.t() * self.weight) ##
-
             self.train_specific(c,new_term)
-            # if epoch%20==0:
-            #     ##kk = sq_norm_Aw - self.w_old.t() * self.weight
-            #     bound_loss = self.bound**2 * torch.log(torch.sqrt(torch.tensor(self.d))*torch.square(torch.norm(self.A()-self.A(self.w_old))))
-            #     loss_fro = args.alpha * torch.norm(self.L() - L_noise, p='fro')
-            #     loss_smooth_feat = args.beta * self.feature_smoothing(self.A(), features)
-            #
-            #     #print(f'Total loss = {loss_fro+loss_smooth_feat}, Bound loss = {bound_loss}')
-            #     #print(f'sq_norm_Aw - self.w_old.t()*self.weight) = {kk.sum()}')
-            #     #print(f'New Term sum = {new_term.sum()}')
-  
-        #print("Optimization Finished!")
-        #print("Total time elapsed: {:.4f}s".format(time.time() - t_total))
-        #print(args)
-        #print(f'New term sum = {new_term.sum()}')
 
         return self.A().detach()
 
@@ -133,14 +104,13 @@ class RwlGNN:
             print("\n=== train_adj ===")
         t = time.time()
               
-        sgl_grad = self.w_grad(args.alpha ,c,new_term) ###########################################
+        sgl_grad = self.w_grad(args.alpha ,c,new_term)
 
         self.w_old = self.weight
 
         total_grad  = sgl_grad  
         self.weight = self.sgl_opt.backward_pass(total_grad)
         self.weight = torch.clamp(self.weight,min=0)
-
 
 
     def feature_smoothing(self, adj, X):

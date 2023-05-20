@@ -12,9 +12,8 @@ from deeprobust.graph.utils import preprocess, encode_onehot, get_train_val_test
 
 # Training settings
 parser = argparse.ArgumentParser()
-parser.add_argument('--bounded',type = str,help = "Bounded or regular",default="n") ##########################
-parser.add_argument('--bound', type=float, default=0, help='weight of bound importance')  ##########################
 
+parser.add_argument('--bound', type=float, default=0, help='weight of bound importance')
 parser.add_argument('--two_stage',type = str,help = "Use Two Stage",default="y")
 parser.add_argument('--optim',type = str,help = "Optimizer",default="sgd")
 parser.add_argument('--lr_optim',type = float, help = "learning rate for the graph weight update" ,default=1e-3)
@@ -39,7 +38,7 @@ parser.add_argument('--dropout', type=float, default=0.5,
 parser.add_argument('--dataset', type=str, default='cora',
         choices=['cora', 'cora_ml', 'citeseer', 'polblogs', 'pubmed'], help='dataset')
 parser.add_argument('--attack', type=str, default='meta',
-        choices=['no', 'meta', 'random', 'nettack'])
+        choices=['no', 'meta', 'nettack'])
 parser.add_argument('--ptb_rate', type=float, default=0.05, help="noise ptb_rate")
 parser.add_argument('--epochs', type=int,  default=400, help='Number of epochs to train.')
 parser.add_argument('--alpha', type=float, default=1, help='weight of Forbeius norm')
@@ -53,12 +52,6 @@ parser.add_argument('--symmetric', action='store_true', default=False,
 
 
 args = parser.parse_args()
-
-###################################################################################
-
-
-#######################################################################################
-
 
 
 args.cuda = not args.no_cuda and torch.cuda.is_available()
@@ -89,17 +82,6 @@ if args.dataset == 'pubmed':
 if args.attack == 'no':
     perturbed_adj = adj
 
-if args.attack == 'random':
-    from deeprobust.graph.global_attack import Random
-    # to fix the seed of generated random attack, you need to fix both np.random and random
-    # you can uncomment the following code
-    import random; random.seed(args.seed)
-    np.random.seed(args.seed)
-    attacker = Random()
-    n_perturbations = int(args.ptb_rate * (adj.sum()//2))
-    attacker.attack(adj, n_perturbations, type='add')
-    perturbed_adj = attacker.modified_adj
-
 if args.attack == 'meta' or args.attack == 'nettack':
     perturbed_data = PrePtbDataset(root='/tmp/',
             name=args.dataset,
@@ -113,42 +95,28 @@ np.random.seed(args.seed)
 torch.manual_seed(args.seed)
 
 ##########################
-if args.bounded == 'y':
-    from bounded_gcn import BoundedGCN
-    #print("Using bounded gcn")
-    model = BoundedGCN(nfeat=features.shape[1],
-                nhid=args.hidden,
-                nclass=labels.max().item() + 1,
-                dropout=args.dropout, device=device,bound=args.bound)
-    #model = GCN(nfeat=features.shape[1],
-    #            nhid=args.hidden,
-    #            nclass=labels.max().item() + 1,
-    #          dropout=args.dropout, device=device)
-    if args.two_stage=="y":
-        from Bounded_two_stage import RwlGNN
-        #print(" Debug ::: Selected Bounded_two_stage ")
-        #print(f'Debug ::: Bound = {args.bound}')
-    else:
-        from BoundedJointLearning import RwlGNN
-else:
-   # from bounded_gcn import BoundedGCN
+if args.only_gcn:
     model = GCN(nfeat=features.shape[1],
                 nhid=args.hidden,
                 nclass=labels.max().item() + 1,
               dropout=args.dropout, device=device)
-    if args.two_stage=="y":
-        from RwlGNN_two import RwlGNN
 
+else:
+    from bounded_gcn import BoundedGCN
+    model = BoundedGCN(nfeat=features.shape[1],
+                       nhid=args.hidden,
+                       nclass=labels.max().item() + 1,
+                       dropout=args.dropout, device=device, bound=args.bound)
+
+    if args.two_stage == "y":
+        from Bounded_two_stage import RSGNN
     else:
-        from RwlGNN import RwlGNN
+        from BoundedJointLearning import RSGNN
 
-######################################
 
 if args.only_gcn:
 
     perturbed_adj, features, labels = preprocess(perturbed_adj, features, labels, preprocess_adj=False, sparse=True, device=device)
-
-   # features = torch.norm(features,p='fro')
 
     model.fit(features, perturbed_adj, labels, idx_train, idx_val, verbose=True, train_iters=args.epochs)
     model.test(idx_test)
@@ -156,16 +124,12 @@ if args.only_gcn:
 
 else:
     perturbed_adj, features, labels = preprocess(perturbed_adj, features, labels, preprocess_adj=False, device=device)
-
-    #col_norms = torch.norm(features, dim=0)
-    #features = features/col_norms
-
-    rwlgnn = RwlGNN(model, args, device)
+    rsgnn = RSGNN(model, args, device)
     if args.two_stage=="y":
-        adj_new = rwlgnn.fit(features, perturbed_adj)
+        adj_new = rsgnn.fit(features, perturbed_adj)
         model.fit(features, adj_new, labels, idx_train, idx_val, verbose=False, train_iters=args.epochs,bound=args.bound) #######
         model.test(idx_test)
     else:
-        rwlgnn.fit(features, perturbed_adj, labels, idx_train, idx_val)
-        rwlgnn.test(features, labels, idx_test)
+        rsgnn.fit(features, perturbed_adj, labels, idx_train, idx_val)
+        rsgnn.test(features, labels, idx_test)
 

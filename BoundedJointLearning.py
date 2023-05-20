@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import warnings
 from utils import *
 
-class RwlGNN:
+class RSGNN:
     """ RWL-GNN (Robust Graph Neural Networks using Weighted Graph Laplacian)
     Parameters
     ----------
@@ -39,29 +39,8 @@ class RwlGNN:
         self.valid_cost = []
         self.train_acc = []
         self.valid_acc = []
-    
-    def plot_cost(self):
-        plt.figure(figsize=(10,6))
-        plt.plot(range(len(self.valid_cost)),self.valid_cost,label="Validation_Cost")
-        
-        plt.xlabel("No. of iterations")
-        plt.ylabel("cost")
-        plt.title("Cost function Convergence")
-        plt.legend()
-        plt.savefig(f"{self.args.beta}_{self.args.dataset}_{self.args.ptb_rate}_VAL_COST.png")
-        plt.show()
-     
 
-    def plot_acc(self):
-        plt.figure(figsize=(10,6))
-        plt.plot(range(len(self.train_acc)),self.train_acc,label ="Train_acc") 
-        plt.plot(range(len(self.valid_acc)),self.valid_acc,label = "Valid_acc")       
-        plt.xlabel("No. of iterations")
-        plt.ylabel("Accuracy")
-        plt.title("Accuracy Curve")
-        plt.legend()
-        plt.savefig(f"{self.args.beta}_{self.args.dataset}_{self.args.ptb_rate}_ACC.png")
-        plt.show()
+
 
     def fit(self, features, adj, labels, idx_train, idx_val):
         """Train RWL-GNN.
@@ -99,15 +78,12 @@ class RwlGNN:
       
         self.weight.requires_grad = True
         self.w_old = torch.zeros_like(self.weight)  ####################  To store previous w value ( w^{t-1} )
-
         self.weight = self.weight.to(self.device)
-        self.w_old = self.w_old.to(self.device)  #######################################################
-        # self.weight = torch.rand(int(n*(n-1)/2),dtype=torch.float,requires_grad=True,device = self.device)
+        self.w_old = self.w_old.to(self.device)
 
-        self.bound = args.bound            #############################
+        self.bound = args.bound
 
-        #print(f'Bound = {self.bound}')
-        self.d =  features.shape[1]        ################### Dimension of feature
+        self.d =  features.shape[1]
     
         c = self.Lstar(2*L_noise*args.alpha - args.beta*(torch.matmul(features,features.t())) )
 
@@ -139,11 +115,6 @@ class RwlGNN:
                     estimate_adj = self.A()
                     self.train_gcn(epoch, features, estimate_adj,
                             labels, idx_train, idx_val)
-
-                # if args.decay == "y":
-                #     if epoch % 100 == 0:
-                #       self.sgl_opt.lr =args.lr_init * (args.lr_decay_rate)
-                #       print('The learning rate was set to {}.'.format(self.sgl_opt.lr))
 
 
         if args.plots=="y":
@@ -177,12 +148,6 @@ class RwlGNN:
         y = y.to(self.device)
         y.requires_grad = True
 
-        #if iter%20 == 0:
-        #    loss_fro = args.alpha* torch.norm(self.L(y) - L_noise, p='fro')
-
-        #    loss_smooth_feat =args.beta* self.feature_smoothing(self.A(y), features)
-        #    bound_loss = self.bound**2  * torch.log(torch.sqrt(torch.tensor(self.d)) * torch.square(torch.norm(self.A() - self.A(self.w_old))))
-        #    print(f'Total loss = {loss_fro + loss_smooth_feat}, Bound loss = {bound_loss}')
 
         normalized_adj = self.normalize(y)
         output = self.model(features, normalized_adj)
@@ -334,24 +299,6 @@ class RwlGNN:
               "accuracy= {:.4f}".format(acc_test.item()))
         return acc_test.item()
 
-    def feature_smoothing(self, adj, X):
-        adj = (adj.t() + adj)/2
-        rowsum = adj.sum(1)
-        r_inv = rowsum.flatten()
-        D = torch.diag(r_inv)
-        L = D - adj
-
-        r_inv = r_inv  + 1e-3
-        r_inv = r_inv.pow(-1/2).flatten()
-        r_inv[torch.isinf(r_inv)] = 0.
-        r_mat_inv = torch.diag(r_inv)
-        # L = r_mat_inv @ L
-        L = r_mat_inv @ L @ r_mat_inv
-
-        XLXT = torch.matmul(torch.matmul(X.t(), L), X)
-        loss_smooth_feat = torch.trace(XLXT)
-        return loss_smooth_feat
-
 
     def A(self,weight=None):
         # with torch.no_grad():
@@ -402,8 +349,6 @@ class RwlGNN:
         k=int(0.5*N*(N-1))
         # l=0
         w=torch.zeros(k,device=self.device)
-        ##in the triu_indices try changing the 1 to 0/-1/2 for other
-        ## ascpect of result on how you want the diagonal to be included
         indices=torch.triu_indices(N,N,1)
         M_t=torch.tensor(M)
         w=-M_t[indices[0],indices[1]]

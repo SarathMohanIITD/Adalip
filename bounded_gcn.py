@@ -184,34 +184,10 @@ class BoundedGCN(nn.Module):
         self.features = features
         self.labels = labels
 
-        if idx_val is None:
-            print("Training without val")
-            self._train_without_val(labels, idx_train, train_iters, verbose)
-        else:
-            if patience < train_iters:
-                self._train_with_early_stopping(labels, idx_train, idx_val, train_iters, patience, verbose)
-            else:
-                self._train_with_val(labels, idx_train, idx_val, train_iters, verbose)
 
-    def _train_without_val(self, labels, idx_train, train_iters, verbose):
-        print("Training without val")
-        self.train()
-        optimizer = optim.Adam(self.parameters(), lr=self.lr, weight_decay=self.weight_decay)
-        for i in range(train_iters):
-            optimizer.zero_grad()
-            output = self.forward(self.features, self.adj_norm)
-            #self.l2_reg = self.bound * torch.square(torch.norm(self.gc1.weight)) + torch.square(torch.norm(self.gc2.weight))  # Added by me
+         self._train_with_val(labels, idx_train, idx_val, train_iters, verbose)
 
-            print(f'L2 reg at iteration {i} = {l2_reg}')
-            loss_train = F.nll_loss(output[idx_train], labels[idx_train]) + self.bound*self.l2_reg
-            loss_train.backward()
-            optimizer.step()
-            if verbose and i % 10 == 0:
-                print('Epoch {}, training loss: {}'.format(i, loss_train.item()))
 
-        self.eval()
-        output = self.forward(self.features, self.adj_norm)
-        self.output = output
 
     def _train_with_val(self, labels, idx_train, idx_val, train_iters, verbose):
         print("Training with val")
@@ -259,46 +235,6 @@ class BoundedGCN(nn.Module):
 
         if verbose:
             print('=== picking the best model according to the performance on validation ===')
-        self.load_state_dict(weights)
-
-    def _train_with_early_stopping(self, labels, idx_train, idx_val, train_iters, patience, verbose):
-        print("Training with early stopping")
-        if verbose:
-            print('=== training gcn model ===')
-        optimizer = optim.Adam(self.parameters(), lr=self.lr, weight_decay=self.weight_decay)
-
-        early_stopping = patience
-        best_loss_val = 100
-
-        for i in range(train_iters):
-            self.train()
-            optimizer.zero_grad()
-            output = self.forward(self.features, self.adj_norm)
-            loss_train = F.nll_loss(output[idx_train], labels[idx_train])
-            loss_train.backward()
-            optimizer.step()
-
-            if verbose and i % 10 == 0:
-                print('Epoch {}, training loss: {}'.format(i, loss_train.item()))
-
-            self.eval()
-            output = self.forward(self.features, self.adj_norm)
-
-
-            loss_val = F.nll_loss(output[idx_val], labels[idx_val])
-
-            if best_loss_val > loss_val:
-                best_loss_val = loss_val
-                self.output = output
-                weights = deepcopy(self.state_dict())
-                patience = early_stopping
-            else:
-                patience -= 1
-            if i > early_stopping and patience <= 0:
-                break
-
-        if verbose:
-             print('=== early stopping at {0}, loss_val = {1} ==='.format(i, best_loss_val) )
         self.load_state_dict(weights)
 
     def test(self, idx_test):
