@@ -42,14 +42,14 @@ python setup.py install
 ```
 
 ## Run the code
-After installation, you can clone this repository or you can use the demo notebook here [COLAB](https://colab.research.google.com/github/Bharat-Runwal/RWL-GNN/blob/main/Demo_RWL_GNN.ipynb)
+After installation, you can clone this repository or you can use the demo notebook here [COLAB](https://github.com/SarathMohanIITD/RS-GNN/blob/main/RS_GNN.ipynb)
 ```
 https://github.com/SarathMohanIITD/RS-GNN
 cd RS-GNN
 !python train.py --two_stage y --bound 0.5 --seed 30 --dataset citeseer  --attack meta --ptb_rate 0.25 --epochs 200 --epochs_pre 400 --alpha 1.0  --gamma 1.0 --beta 0.3 --lr_optim 1e-2 --lr 1e-3
 ```
 <!-- [colab]: <https://colab.research.google.com/assets/colab-badge.svg>
-[RWL-GNN]: <https://github.com/SarathMohanIITD/RS-GNN/blob/main/RS_GNN.ipynb> -->
+[RS-GNN]: <https://github.com/SarathMohanIITD/RS-GNN/blob/main/RS_GNN.ipynb> -->
 
 ## Acknowledgements
 The code is based on :
