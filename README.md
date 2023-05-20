@@ -2,22 +2,9 @@
 
 <p align="center"><sup>1</sup> IIT Delhi
 
-<p align="center">
-  <a href="https://arxiv.org/pdf/2208.01853.pdf" alt="ArXiv">
-        <img src="https://img.shields.io/badge/Preprint-arXiv-blue.svg" /></a>
-  <a href="https://colab.research.google.com/github/Bharat-Runwal/RWL-GNN/blob/main/Demo_RWL_GNN.ipynb" alt="Demo">
-        <img src="https://colab.research.google.com/assets/colab-badge.svg" /></a>
-  <a href="https://docs.google.com/presentation/d/1qDS09BlPXeO1VtDIVmji1r8ZzpUY4NmujLRa6Aw9QiQ/edit?usp=sharing" alt="Slides">
-        <img src="https://img.shields.io/badge/Slides-SPCOM-yellow.svg" /></a>
-</p>
-
-<p align="center">
-  <img src ="joint.png"  width="1000"/>
-</p>
 
 
-
-A PyTorch implementation of "Robustifying Graph Neural Networks via Weighted Laplacian" Accepted at [SPCOM](https://ece.iisc.ac.in/~spcom/2022/) 2022 (**Best Student Paper Award**).
+A PyTorch implementation of "Robust and stable learning via Logarithmic Norm Regularization" 
 <!-- 
 [![][colab]][RWL-GNN]
 <div align=center><img src="joint.png" width="700"/></div> -->
