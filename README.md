@@ -1,6 +1,6 @@
 <h1 align="center"> RS-GNN : Robust and stable learning via Logarithmic Norm Regularization</h1>
 
-<p align="center"><sup>1</sup> IIT Delhi
+<p align="center"><sup> IIT Delhi
 
 
 
