@@ -8,24 +8,7 @@ ADAPTIVE LIPSCHITZ REGULARIZATION</h1>
 A PyTorch implementation of "Robust and stable learning via Logarithmic Norm Regularization" 
 
 ## Abstract 
-- Graph Neural Networks (GNNs) have demonstrated remarkable performance across
-numerous application domains due to their ability to capture the potential of
-the interconnectedness of data. As GNN is getting adopted in the industry and
-government organizations, adversarial attacks on GNN have become a significant
-threat that can affect the overall performance of the learner. Additionally, as
-the depth of models increases, their performance often deteriorates significantly
-due to over-smoothing of the node features. The current defense techniques to
-handle both bottlenecks require significant computational resources, lack scalability,
-and rely on specific architectural configurations. In this work, we formulate a
-joint framework for graph denoising and GNN training along with logarithmic
-norm regularization on the product of layer-wise activations. The proposed use
-of logarithmic norm regularization aids in bounding the difference between the
-embeddings obtained from the original graph signal and the perturbed graph. The
-proposed frameworks are solved efficiently by leveraging block majorization-
-minimization, graph learning, and alternate minimization. The developed iterative
-algorithm is efficient and provably convergent. Simulation results on real datasets
-demonstrate the efficacy of the proposed method over state-of-the-art methods. The
-method also provides a new paradigm for the training of deep GNNs.
+- Graph Neural Networks (GNNs) have exhibited exceptional performance across diverse application domains by harnessing the inherent interconnectedness of data. However, the emergence of adversarial attacks targeting GNNs poses a substantial and pervasive threat, compromising their overall performance and learning capabilities. While recent efforts have focused on enhancing GNN robustness from both data and architectural perspectives, more attention should be given to overall network stability in the face of input perturbations. Prior methods addressing network stability have routinely employed gradient normalization as a fundamental technique. This study introduces a unifying approach, termed as AdaLip, for adversarial training of GNNs through an optimization framework that leverages the explicit Lipschitz constant. By seamlessly integrating graph denoising and network regularization, AdaLip offers a comprehensive and versatile solution, extending its applicability and enabling robust regularization for diverse neural network architectures. Further, we develop a provably convergent iterative algorithm, leveraging block majorization-minimization, graph learning, and alternate minimization techniques to solve the proposed optimization problem. Simulation results on real datasets demonstrate the efficacy of AdaLip over state-of-the-art defence methods across diverse classes of poisoning attacks. On select datasets, AdaLip demonstrates GCN performance improvements of up to 20% against modification attacks and approximately 10% against injection attacks. Remarkably, AdaLip achieves a similar performance gain on heterophily graph datasets.
 
 ## Requirements
 See that in https://github.com/DSE-MSU/DeepRobust/blob/master/requirements.txt
