@@ -1,5 +1,5 @@
 <h1 align="center"> AdaLip : AN OPTIMIZATION-BASED FRAMEWORK FOR ADVERSARIAL DEFENCE OF GRAPH NEURAL NETWORKS VIA
-ADAPTIVE LIPSCHITZ REGULARIZATION</h1> <a href="https://misn.iitd.ac.in/" target="_blank id="website">MISN Lab , IIT Delhi </a>
+ADAPTIVE LIPSCHITZ REGULARIZATION</h1> 
 <p align="center"> <a href="https://scholar.google.com/citations?user=MRJqKywAAAAJ&hl=en&oi=ao" target="_blank id="website">Vipul Kumar Singh </a>, <a href="https://github.com/SarathMohanIITD" target="_blank id="website">Sarath Mohan </a>, <a href="https://sites.google.com/view/sandeepkr/home" target="_blank id="website">Sandeep Kumar</a></p>
 <p align="center">  <a href="[https://misn.iitd.ac.in/](https://openreview.net/forum?id=Xsrsj3cne4)" target="_blank id="website">Paper </a>
 
